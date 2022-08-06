@@ -1,0 +1,30 @@
+# Hint: Python Version >= 3.6
+
+# Paddle
+
+## PaddlePaddle 2.3.1
+## https://www.paddlepaddle.org.cn/documentation/docs/zh/install/index_cn.html
+
+### CPU Version
+paddlepaddle==2.3.1
+
+### GPU Version (read the docs)
+### ...
+
+
+## Paddle Serving 0.9.0
+## https://github.com/PaddlePaddle/Serving/blob/v0.9.0/doc/Install_Linux_Env_CN.md
+
+paddle-serving-client == 0.9.0
+paddle-serving-app == 0.9.0
+
+### CPU Server
+paddle-serving-server == 0.9.0
+
+### GPU Server (check version)
+### paddle-serving-server-gpu == 0.9.0.post102
+### paddle-serving-server-gpu == 0.9.0.post101
+### paddle-serving-server-gpu == 0.9.0.post112
+
+# utils
+requests
