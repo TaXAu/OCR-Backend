@@ -1,9 +1,11 @@
 import os
 import tarfile
 import requests
+from paddle_serving_client.io import inference_model_to_serving
 
 # Global Config
 DOWNLOAD_TMP_DIR = "./tmp/"
+MODEL_DIR = "./models/"
 
 
 class DownloadError(Exception):
@@ -43,9 +45,22 @@ if __name__ == "__main__":
                       "ch_PP-OCRv3_det_infer.tar")
         download_file("https://paddleocr.bj.bcebos.com/PP-OCRv3/chinese/ch_PP-OCRv3_rec_infer.tar",
                       "ch_PP-OCRv3_rec_infer.tar")
-        extract(f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_det_infer.tar", DOWNLOAD_TMP_DIR)
-        extract(f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_rec_infer.tar", DOWNLOAD_TMP_DIR)
+        extract(f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_det_infer.tar",
+                DOWNLOAD_TMP_DIR)
+        extract(f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_rec_infer.tar",
+                DOWNLOAD_TMP_DIR)
     except DownloadError:
         raise DownloadError
-    det_infer_folder = f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_det_infer"
-    rec_infer_folder = f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_rec_infer"
+    det_infer_folder = f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_det_infer/"
+    rec_infer_folder = f"{DOWNLOAD_TMP_DIR}ch_PP-OCRv3_rec_infer/"
+    inference_model_to_serving(dirname=det_infer_folder,
+                               model_filename="inference.pdmodel",
+                               params_filename="inference.pdiparams",
+                               serving_server=f"{MODEL_DIR}ppocr_det_v3_serving",
+                               serving_client=f"{MODEL_DIR}ppocr_det_v3_client"
+                               )
+    inference_model_to_serving(dirname=rec_infer_folder,
+                               model_filename="inference.pdmodel",
+                               params_filename="inference.pdiparams",
+                               serving_server=f"{MODEL_DIR}ppocr_rec_v3_serving",
+                               serving_client=f"{MODEL_DIR}ppocr_rec_v3_client")

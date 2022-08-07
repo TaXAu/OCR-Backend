@@ -1,2 +1,7 @@
 /tmp/
 .idea
+.vscode
+/models/
+__pycache__
+/ProcessInfo.json
+/PipelineServingLogs
