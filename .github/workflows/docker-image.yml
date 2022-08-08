@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Login Coding.net
+      run: docker login -u ${{ CODING_U }} -p ${{CODING_P}} sperjar-docker.pkg.coding.net
+    
+    - name: Build the Docker image
+      run: docker-compose -f .\deploy\docker-compose.yml build
+      
+    - name: Push to Coding.net
+      run: docker push sperjar-docker.pkg.coding.net/taxau/ocr_docker/ocr_deploy:latest
+      
+    
