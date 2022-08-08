@@ -69,7 +69,7 @@ class DetOp(Op):
 class RecOp(Op):
     def init_op(self):
         self.ocr_reader = OCRReader(
-            char_dict_path="../../ppocr/utils/ppocr_keys_v1.txt")
+            char_dict_path="utils/ppocr_keys_v1.txt")
 
         self.get_rotate_crop_image = GetRotateCropImage()
         self.sorted_boxes = SortedBoxes()
