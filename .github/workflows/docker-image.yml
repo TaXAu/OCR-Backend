@@ -19,7 +19,7 @@ jobs:
       run: docker login -u ${{ secrets.CODING_U }} -p ${{ secrets.CODING_P }} sperjar-docker.pkg.coding.net
     
     - name: Build the Docker image
-      run: docker-compose -f .\deploy\docker-compose.yml build
+      run: docker-compose -f ./deploy/docker-compose.yml build
       
     - name: Push to Coding.net
       run: docker push sperjar-docker.pkg.coding.net/taxau/ocr_docker/ocr_deploy:latest
