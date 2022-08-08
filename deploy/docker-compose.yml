@@ -1,6 +1,7 @@
-version: '0.0.1'
+version: "2"
 services:
   ocr:
+    image: ocr_deploy
     build:
       context: ..
       dockerfile: Dockerfile-Deploy
