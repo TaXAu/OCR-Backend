@@ -1,0 +1,7 @@
+FROM python:3.9
+RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+WORKDIR /workspaces/OCR
+COPY . /workspaces/OCR
+RUN pip3 install -r requirements.txt && python3 setup.py
+CMD ["python3", "-m", "src"]

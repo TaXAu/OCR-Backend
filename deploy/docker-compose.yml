@@ -1,0 +1,9 @@
+version: '0.0.1'
+services:
+  ocr:
+    build:
+      context: ..
+      dockerfile: Dockerfile-Deploy
+    ports:
+      - "9998:9998"
+      - "18091:18091"
